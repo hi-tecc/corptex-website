@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --color-paper: #f6f4ef;
+  --color-paper-2: #ece9e1;
+  --color-ink: #1e1e1f;
+  --color-charcoal: #3c3c3c;
+  --color-muted: #6b6a66;
+  --color-line: #dcd8ce;
+  --color-hivis: #ffb81c;
+  --color-hivis-600: #e9a20a;
+  --color-navy: #151a59;
+  --color-navy-900: #0d1140;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-marquee-reverse: marquee var(--marquee-duration, 40s) linear infinite reverse;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-hivis text-ink;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-hivis);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility font-wide {
+  font-stretch: 112%;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
+}
