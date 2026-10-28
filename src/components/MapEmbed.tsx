@@ -4,14 +4,17 @@ import { MapPin } from "lucide-react";
 import { useState } from "react";
 
 import { business } from "@/content/site";
+import { cn } from "@/lib/cn";
 
 /** Google Maps is only loaded after an explicit click (no third-party cookies by default). */
-export function MapEmbed() {
+export function MapEmbed({ className }: { className?: string }) {
   const [loaded, setLoaded] = useState(false);
   const { street, postalCode, city } = business.address;
 
   return (
-    <div className="relative aspect-[16/10] overflow-hidden rounded-[1.75rem] bg-paper-2 sm:aspect-[16/8]">
+    <div
+      className={cn("relative aspect-square overflow-hidden rounded-[1.75rem] bg-paper sm:aspect-[16/8]", className)}
+    >
       {loaded ? (
         <iframe
           title={`Kaart: ${business.name}, ${street}, ${postalCode} ${city}`}

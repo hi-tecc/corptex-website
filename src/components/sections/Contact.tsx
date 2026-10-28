@@ -6,6 +6,7 @@ import { OpeningHours } from "@/components/OpeningHours";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { business } from "@/content/site";
+import { contactFormEnabled } from "@/lib/features";
 
 const { street, postalCode, city } = business.address;
 
@@ -65,18 +66,26 @@ export function Contact() {
             </Reveal>
           </div>
 
-          <div className="space-y-5 lg:col-span-7">
-            <Reveal delay={0.1}>
-              <div className="rounded-[2rem] bg-paper p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.25)] sm:p-10">
-                <h3 className="text-2xl font-extrabold tracking-tight">Stuur ons een bericht</h3>
-                <p className="mt-2 mb-8 text-muted">Vraag een offerte, maak een afspraak of stel gewoon je vraag.</p>
-                <ContactForm />
-              </div>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <MapEmbed />
-            </Reveal>
-          </div>
+          {contactFormEnabled ? (
+            <div className="space-y-5 lg:col-span-7">
+              <Reveal delay={0.1}>
+                <div className="rounded-[2rem] bg-paper p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.25)] sm:p-10">
+                  <h3 className="text-2xl font-extrabold tracking-tight">Stuur ons een bericht</h3>
+                  <p className="mt-2 mb-8 text-muted">Vraag een offerte, maak een afspraak of stel gewoon je vraag.</p>
+                  <ContactForm />
+                </div>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <MapEmbed />
+              </Reveal>
+            </div>
+          ) : (
+            <div className="lg:col-span-7">
+              <Reveal delay={0.1} className="h-full">
+                <MapEmbed className="lg:aspect-auto lg:h-full lg:min-h-[28rem]" />
+              </Reveal>
+            </div>
+          )}
         </div>
       </div>
     </section>
