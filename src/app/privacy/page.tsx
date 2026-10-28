@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { business } from "@/content/site";
+import { contactFormEnabled } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "Privacyverklaring",
@@ -37,24 +38,35 @@ export default function PrivacyPage() {
           </section>
           <section>
             <h2>Welke gegevens verzamelen we?</h2>
-            <p>
-              Via het contactformulier vragen we je naam, e-mailadres, onderwerp en bericht. Als je dat aanvinkt, gebruiken
-              we je e-mailadres ook om je onze nieuwsbrief te sturen.
-            </p>
+            {contactFormEnabled ? (
+              <p>
+                Via het contactformulier vragen we je naam, e-mailadres, onderwerp en bericht. Als je dat aanvinkt,
+                gebruiken we je e-mailadres ook om je onze nieuwsbrief te sturen.
+              </p>
+            ) : (
+              <p>
+                Deze website verzamelt zelf geen persoonsgegevens. Als je ons mailt, belt of een WhatsApp-bericht stuurt,
+                bewaren we enkel je naam, contactgegevens en bericht.
+              </p>
+            )}
           </section>
           <section>
             <h2>Waarom gebruiken we die gegevens?</h2>
             <p>
-              Enkel om je vraag te beantwoorden, een offerte op te maken of een afspraak in te plannen, en – met je
-              toestemming – om je nieuws en acties te sturen. Je kan je op elk moment uitschrijven.
+              Enkel om je vraag te beantwoorden, een offerte op te maken of een afspraak in te plannen
+              {contactFormEnabled
+                ? ", en – met je toestemming – om je nieuws en acties te sturen. Je kan je op elk moment uitschrijven."
+                : "."}
             </p>
           </section>
           <section>
             <h2>Met wie delen we je gegevens?</h2>
             <p>
-              We verkopen je gegevens nooit. Berichten via het formulier worden verwerkt door een externe
-              formulierendienst die ze naar onze mailbox doorstuurt. De kaart op de contactpagina wordt pas geladen als je
-              daar zelf op klikt; op dat moment worden gegevens gedeeld met Google.
+              We verkopen je gegevens nooit.
+              {contactFormEnabled &&
+                " Berichten via het formulier worden verwerkt door een externe formulierendienst die ze naar onze mailbox doorstuurt."}{" "}
+              De kaart op de contactpagina wordt pas geladen als je daar zelf op klikt; op dat moment worden gegevens
+              gedeeld met Google.
             </p>
           </section>
           <section>

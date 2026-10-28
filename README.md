@@ -50,7 +50,7 @@ Kopieer `.env.example` naar `.env.local` en vul in waar nodig:
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Endpoint van het contactformulier ([Formspree](https://formspree.io) of [Web3Forms](https://web3forms.com)) |
 | `NEXT_PUBLIC_WEB3FORMS_KEY` | Enkel voor Web3Forms: de (publieke) access key                                                   |
 
-Zonder `NEXT_PUBLIC_FORM_ENDPOINT` opent het formulier het mailprogramma van de bezoeker (mailto naar kylie@corptex.be).
+Het contactformulier is **verborgen** zolang `NEXT_PUBLIC_FORM_ENDPOINT` leeg is: de contactsectie toont dan enkel telefoon, mail, WhatsApp, openingsuren en de kaart, en de privacyverklaring vermeldt het formulier niet. Vul je de variabele in en bouw je de site opnieuw, dan verschijnt het formulier automatisch.
 
 ## Deployen
 
@@ -92,7 +92,7 @@ CI (`.github/workflows/ci.yml`) draait lint, typecheck en build op elke push en 
 - [ ] **Social media**-links (Instagram, Facebook, LinkedIn, …)
 - [ ] **Talen**: enkel Nederlands, of ook Frans/Engels?
 - [ ] **Webshop** later gewenst?
-- [ ] **Formulier**: account bij Formspree of Web3Forms aanmaken (gratis) en endpoint/key doorgeven
+- [ ] **Formulier** (staat voorlopig uit): account bij Formspree of Web3Forms aanmaken (gratis) en endpoint/key doorgeven om het aan te zetten
 - [ ] **Privacyverklaring** nalezen (staat als concept online)
 - [ ] **Domein**: wie beheert de one.com-account? Nodig voor de DNS-wijziging
 - [ ] Na de eigen beelden: SEO-/toegankelijkheidsronde en Lighthouse ≥ 95
